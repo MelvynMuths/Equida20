@@ -13,11 +13,13 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import modele.CategVente;
+import modele.Cheval;
 import modele.Client;
 import modele.Pays;
 import modele.Vente;
 import modele.Courriel;
 import modele.Lieu;
+import modele.Lot;
 
 /**
  *
@@ -161,6 +163,41 @@ public class VenteDAO {
         }
         return lesMail ;    
     } 
+    public static ArrayList<Lot>  getLesLot(Connection connection, String codeVen){      
+        ArrayList<Lot> lesLot = new  ArrayList<Lot>();
+        try
+        {
+            //preparation de la requete     
+            requete=connection.prepareStatement("SELECT l.*, c.Nom FROM lot l, vente v, cheval c WHERE l.IDCheval = c.ID AND l.IDVENTE = v.id AND v.id = ?");
+            requete.setString(1, codeVen);
+            
+            System.out.println("requete" +requete );
+            //executer la requete
+            rs=requete.executeQuery();
+             
+            //On hydrate l'objet métier Client avec les résultats de la requête
+            while ( rs.next() ) {  
+                
+                
+                
+                Lot unLot = new Lot();
+                unLot.setId(rs.getInt("ID"));
+                unLot.setPrxDepart(rs.getString("prixDepart"));
+                
+                Cheval unCheval = new Cheval();
+                unCheval.setNom(rs.getString("Nom"));
+                        
+                unLot.setUnCheval(unCheval);
+                lesLot.add(unLot);
+            }
+            
+        }   
+        catch (SQLException e){
+            e.printStackTrace();
+            //out.println("Erreur lors de l’établissement de la connexion");
+        }
+        return lesLot;    
+    }
     
     
     

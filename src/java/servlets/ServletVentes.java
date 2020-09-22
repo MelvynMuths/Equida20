@@ -10,7 +10,10 @@ import database.VenteDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +22,9 @@ import javax.servlet.http.HttpServletResponse;
 import modele.Client;
 import modele.Vente;
 import modele.Courriel;
+import modele.Lot;
+
+        
 
 /**
  *
@@ -114,6 +120,20 @@ public class ServletVentes extends HttpServlet {
             request.setAttribute("pLesMail", lesMail);
             getServletContext().getRequestDispatcher("/vues/ventes/listerLesCourriel.jsp").forward(request, response);
         }
+        if(url.equals("/EquidaWeb20/ServletVentes/listerLesChevaux"))
+        {  
+           System.out.println("DANS LISTER LES CHEVAUX");
+            String codeVen = (String)request.getParameter("codeVen");
+            System.out.println("CODEVENTE");
+           
+            
+            ArrayList<Lot> lesLot = VenteDAO.getLesLot(connection, codeVen);
+             System.out.println("DANS LISTER LES CHEVAUXxxx" + lesLot.size());
+            
+            request.setAttribute("pLesLot", lesLot);
+            getServletContext().getRequestDispatcher("/vues/ventes/listerLesChevaux.jsp").forward(request, response);
+        }
+        
         
         
         

@@ -18,6 +18,7 @@ public class Vente {
     private Lieu unLieu ;
     private CategVente uneCategVente;
     private ArrayList<Courriel> unCourriel ;
+    private ArrayList<Lot> lesLot;
     
     public Vente() {
     }
@@ -27,16 +28,17 @@ public class Vente {
         this.nom = nom;
         this.dateDebutVente = dateDebutVente;
     }
-    
 
-    public Vente(int id, String nom, String dateDebutVente, Lieu unLieu, CategVente uneCategVente, ArrayList<Courriel> unCourriel) {
+    public Vente(int id, String nom, String dateDebutVente, Lieu unLieu, CategVente uneCategVente, ArrayList<Courriel> unCourriel, ArrayList<Lot> lesLot) {
         this.id = id;
         this.nom = nom;
         this.dateDebutVente = dateDebutVente;
         this.unLieu = unLieu;
         this.uneCategVente = uneCategVente;
         this.unCourriel = unCourriel;
+        this.lesLot = lesLot;
     }
+    
 
     public int getId() {
         return id;
@@ -96,7 +98,19 @@ public class Vente {
     public void setUnLieuVente(Lieu unLieu) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public ArrayList<Lot> getLesLot() {
+        return lesLot;
+    }
+
+    public void setLesLot(ArrayList<Lot> LesLot) {
+        this.lesLot = lesLot;
+    }
     
-    
-    
+    public void addLot(Lot Lot){
+        if(lesLot == null){
+           lesLot = new ArrayList<Lot>();
+        }
+        lesLot.add(Lot);
+    }
 }

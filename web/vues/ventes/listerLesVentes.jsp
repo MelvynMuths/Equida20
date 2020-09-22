@@ -7,6 +7,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="modele.Vente"%>
 <%@page import="modele.Lieu"%>
+<%@page import="modele.Lot"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -70,6 +71,10 @@
                         
                         out.println("<td><a href ='../ServletVentes/listerLesCourriel?codeVen="+ uneVente.getId()+ "'>");
                         out.println("Lister les Mails envoyés");
+                        out.println("</td>");
+                        
+                        out.println("<td><a href ='../ServletVentes/listerLesChevaux?codeVen="+ uneVente.getId()+ "'>");
+                        out.println("Lister les lots pour la vente");
                         out.println("</td>");
                         
                                
