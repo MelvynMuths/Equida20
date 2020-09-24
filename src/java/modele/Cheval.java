@@ -19,19 +19,24 @@ public class Cheval {
     private String ddn;
     private TypeCheval unTypeCheval;
     private ArrayList<Lot> lesLot;
+    private ArrayList<Client> lesClient;
+    private Client unClient;
+    private Cheval Pere;
+    private Cheval Mere;
 
     public Cheval() {
     }
 
-    public Cheval(int id, String nom, String sexe, String nSiret, String ddn) {
+    public Cheval(int id, String sexe, String nSiret, String ddn, Cheval Pere, Cheval Mere) {
         this.id = id;
-        this.nom = nom;
         this.sexe = sexe;
         this.nSiret = nSiret;
         this.ddn = ddn;
+        this.Pere = Pere;
+        this.Mere = Mere;
     }
 
-    public Cheval(int id, String nom, String sexe, String nSiret, String ddn, TypeCheval unTypeCheval, ArrayList<Lot> lesLot) {
+    public Cheval(int id, String nom, String sexe, String nSiret, String ddn, TypeCheval unTypeCheval, ArrayList<Lot> lesLot, ArrayList<Client> lesClient, Client unClient, Cheval Pere, Cheval Mere) {
         this.id = id;
         this.nom = nom;
         this.sexe = sexe;
@@ -39,7 +44,12 @@ public class Cheval {
         this.ddn = ddn;
         this.unTypeCheval = unTypeCheval;
         this.lesLot = lesLot;
+        this.lesClient = lesClient;
+        this.unClient = unClient;
+        this.Pere = Pere;
+        this.Mere = Mere;
     }
+
     
     public int getId() {
         return id;
@@ -103,4 +113,44 @@ public class Cheval {
         }
         lesLot.add(Lot);
     }
+
+    public ArrayList<Client> getLesClient() {
+        return lesClient;
+    }
+
+    public void setLesClient(ArrayList<Client> lesClient) {
+        this.lesClient = lesClient;
+    }
+    
+    public void addClient(Client Client){
+        if(lesClient == null){
+            lesClient = new ArrayList<Client>();
+        }
+        lesClient.add(Client);
+    }
+
+    public Client getUnClient() {
+        return unClient;
+    }
+
+    public void setUnClient(Client unClient) {
+        this.unClient = unClient;
+    }
+
+    public Cheval getPere() {
+        return Pere;
+    }
+
+    public Cheval getMere() {
+        return Mere;
+    }
+
+    public void setPere(Cheval Pere) {
+        this.Pere = Pere;
+    }
+
+    public void setMere(Cheval Mere) {
+        this.Mere = Mere;
+    }
+    
 }

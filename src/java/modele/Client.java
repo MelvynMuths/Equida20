@@ -22,6 +22,8 @@ public class Client {
     private String Mail;
     private Pays unPays ;
     private ArrayList<CategVente> lesCategVentes ;
+    private ArrayList<Cheval> lesChevaux;
+    private Cheval unCheval;
 
     public Client() {
     }
@@ -36,7 +38,7 @@ public class Client {
         this.Mail = Mail;
     }
 
-    public Client(int id, String nom, String prenom, String rue, String copos, String ville, String Mail, Pays unPays, ArrayList<CategVente> lesCategVentes) {
+    public Client(int id, String nom, String prenom, String rue, String copos, String ville, String Mail, Pays unPays, ArrayList<CategVente> lesCategVentes, ArrayList<Cheval> lesChevaux, Cheval unCheval) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -46,6 +48,8 @@ public class Client {
         this.Mail = Mail;
         this.unPays = unPays;
         this.lesCategVentes = lesCategVentes;
+        this.lesChevaux = lesChevaux;
+        this.unCheval = unCheval;
     }
 
     public String getMail() {
@@ -125,5 +129,28 @@ public class Client {
             lesCategVentes = new ArrayList<CategVente>();
         }
         lesCategVentes.add(uneCategVente);
+    }
+
+    public ArrayList<Cheval> getLesChevaux() {
+        return lesChevaux;
+    }
+
+    public Cheval getUnCheval() {
+        return unCheval;
+    }
+
+    public void setLesChevaux(ArrayList<Cheval> lesChevaux) {
+        this.lesChevaux = lesChevaux;
+    }
+
+    public void setUnCheval(Cheval unCheval) {
+        this.unCheval = unCheval;
+    }
+    
+    public void addCheval(Cheval Cheval){
+        if(lesChevaux == null){
+           lesChevaux = new ArrayList<Cheval>();
+        }
+        lesChevaux.add(Cheval);
     }
 }

@@ -20,6 +20,7 @@ import modele.Vente;
 import modele.Courriel;
 import modele.Lieu;
 import modele.Lot;
+import modele.TypeCheval;
 
 /**
  *
@@ -197,6 +198,58 @@ public class VenteDAO {
             //out.println("Erreur lors de l’établissement de la connexion");
         }
         return lesLot;    
+    }
+    public static ArrayList<Cheval>  getLesChevaux(Connection connection, String codeLot){      
+        ArrayList<Cheval> lesChevaux = new  ArrayList<Cheval>();
+        try
+        {
+            //preparation de la requete     
+            requete=connection.prepareStatement("SELECT c.ID, c.Nom, C.Sexe, c.nSiret , cpere.nom AS NomPere, "
+                    + "cmere.nom AS NomMere, cl.nom AS cliNom, tp.Libelle FROM Cheval cmere, Cheval cpere, Cheval c, Lot l, Client cl, "
+                    + "TypeCheval tp WHERE cmere.ID = c.IDMere AND cpere.ID = c.IDPere AND l.IDCheval= c.ID AND cl.ID = c.IDClient AND c.IDTypeCheval = tp.ID AND l.ID = ? ");
+            requete.setString(1, codeLot);
+            //executer la requete
+            rs=requete.executeQuery();
+             
+            //On hydrate l'objet métier Client avec les résultats de la requête
+            while ( rs.next() ) {  
+                
+                Cheval unCheval = new Cheval();
+                unCheval.setId(rs.getInt("ID"));
+                unCheval.setNom(rs.getString("Nom"));
+                unCheval.setSexe(rs.getString("Sexe"));
+                unCheval.setnSiret(rs.getString("nSiret"));
+                
+                TypeCheval unTypeCheval = new TypeCheval();
+                unTypeCheval.setLibelle(rs.getString("Libelle"));
+                
+                Client unClient = new Client();
+                unClient.setNom(rs.getString("cliNom"));
+                System.out.println(unClient.getNom());
+                
+                Cheval Pere = new Cheval();
+                Pere.setNom(rs.getString("NomPere"));
+                
+                Cheval Mere = new Cheval();
+                Mere.setNom(rs.getString("NomMere"));
+                
+                unCheval.setMere(Mere);
+                unCheval.setPere(Pere);
+                unCheval.setUnTypeCheval(unTypeCheval);
+                unCheval.setUnClient(unClient);
+                lesChevaux.add(unCheval);
+                
+                
+            }
+            
+            
+        }   
+        catch (SQLException e){
+            e.printStackTrace();
+            //out.println("Erreur lors de l’établissement de la connexion");
+        }
+        
+        return lesChevaux;    
     }
     
     

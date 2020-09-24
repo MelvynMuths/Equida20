@@ -48,6 +48,9 @@
                         out.println(unLot.getUnCheval().getNom());
                         out.println("</td>");
                         
+                        out.println("<td><a href ='../ServletVentes/ListerLesInformation?codeLot="+ unLot.getId() + "'>");
+                        out.println("Information sur le Cheval");
+                        out.println("</td>");
                     }
                     %>
                 </tr>
