@@ -16,7 +16,6 @@
         <param-name>motdepassejdbc</param-name>
         <param-value/>
     </context-param>
-    <!--  écouteurs -->
     <listener>
         <listener-class>database.InitConnexion</listener-class>
     </listener>
@@ -31,6 +30,10 @@
     <servlet>
         <servlet-name>ServletAdmin</servlet-name>
         <servlet-class>servlets.ServletAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletCheval</servlet-name>
+        <servlet-class>servlets.ServletCheval</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ServletVentes</servlet-name>
@@ -72,10 +75,19 @@
         <servlet-name>ServletAdmin</servlet-name>
         <url-pattern>/ServletAdmin/consulterCategVente</url-pattern>
     </servlet-mapping>
-    
+    <servlet-mapping>
+        <servlet-name>ServletCheval</servlet-name>
+        <url-pattern>/ServletCheval</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletCheval</servlet-name>
+        <url-pattern>/ServletCheval/ajouterCheval</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletCheval</servlet-name>
+        <url-pattern>/ServletCheval/consulterCheval</url-pattern>
+    </servlet-mapping>
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
 </web-app>

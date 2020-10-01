@@ -153,4 +153,8 @@ public class Client {
         }
         lesChevaux.add(Cheval);
     }
+    
+    public int getNbCategVente(){
+        return lesCategVentes.size();
+    }  
 }

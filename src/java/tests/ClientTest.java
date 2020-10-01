@@ -5,6 +5,7 @@
  */
 package tests;
 
+import modele.CategVente;
 import modele.Client;
 import modele.Pays;
 
@@ -21,7 +22,14 @@ public class ClientTest {
         System.out.println(unClient.toString());
         System.out.println(unClient.getNom() + "  " + unClient.getUnPays().getNom());
         
+        CategVente uneCategVente1 = new CategVente("AUT", "Vente d'automne");
+        CategVente uneCategVente2 = new CategVente("EUR", "Grande vente Europeen");
+        CategVente uneCategVente3 = new CategVente("VMC", "Vente Mondiale de Carpiquet");
         
+        unClient.addUneCategVente(uneCategVente1);
+        unClient.addUneCategVente(uneCategVente2);
+        unClient.addUneCategVente(uneCategVente3);
+        System.out.println("le client est interessé par " + unClient.getNbCategVente() + " categorie de vente");
     }
     
 }

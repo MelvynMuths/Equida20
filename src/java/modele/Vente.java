@@ -113,4 +113,8 @@ public class Vente {
         }
         lesLot.add(Lot);
     }
+    
+    public int getNbCourriel(){
+        return unCourriel.size();
+    }
 }
